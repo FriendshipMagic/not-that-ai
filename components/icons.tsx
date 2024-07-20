@@ -50,7 +50,15 @@ export const SunFilledIcon = ({ size = 24, width, height, ...props }: IconSvgPro
 )
 
 export const SwordIcon = ({ size = 24, width, height, ...props }: IconSvgProps) => (
-    <svg width="24" height="24" version="1.1">
+    <svg
+        aria-hidden="true"
+        focusable="false"
+        height={size || height}
+        role="presentation"
+        viewBox="0 0 24 24"
+        width={size || width}
+        {...props}
+    >
         <path
             d="M 5 1 Q 9.2 0.2 10.5 4 L 17.5 4 L 21.5 2 Q 26.3 4.2 22 6.5 L 21 9.5 L 21 11.5 Q 21.8 14.1 18.5 13 L 11.5 21 L 4.5 24 L 1 21.5 Q -0.3 17.3 4.5 19 L 14 10.5 L 13 8.5 L 13.5 7 L 3 9 L 4 5.5 L 3 3 Q 6 4 5 1 Z M 7 2 L 9 5 L 9 4 L 7 2 Z M 19 3 L 18 6 L 20 9 L 22 5 L 19 3 Z M 5 4 L 6 6 L 7 6 L 5 4 Z M 12 5 L 12 6 L 17 6 L 12 5 Z M 16 7 L 14 9 L 20 12 L 20 11 L 16 7 Z M 15 11 L 13 14 L 6 20 Q 1 19 2 22 L 10 21 L 17 13 Q 18 10 15 11 Z "
             fill="currentColor"

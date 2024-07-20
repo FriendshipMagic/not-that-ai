@@ -1,5 +1,6 @@
 import { Link } from '@nextui-org/link'
 import { button as buttonStyles } from '@nextui-org/theme'
+
 import { subtitle, title } from '@/components/primitives'
 
 export default function HomePage() {
@@ -23,7 +24,8 @@ export default function HomePage() {
                     })}
                     href={'/chat'}
                 >
-                    Let's Chat!
+                    {/*encode \'*/}
+                    Let&apos;s Chat!
                 </Link>
             </div>
         </section>
