@@ -25,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html suppressHydrationWarning lang="en">
             <head>
-                <title>Not That AI: 一款实用的AI工具</title>
+                <title>VirgilAI: Powerful AI</title>
             </head>
             <body className={clsx('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
                 <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
@@ -36,11 +36,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             <Link
                                 isExternal
                                 className="flex items-center gap-1 text-current"
-                                href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
+                                href={siteConfig.links.virgilAI}
                                 title="nextui.org homepage"
                             >
                                 <span className="text-default-600">Powered by</span>
-                                <p className="text-primary">NextUI</p>
+                                <p className="text-primary">VirgilAI</p>
                             </Link>
                         </footer>
                     </div>
