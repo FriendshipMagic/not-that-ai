@@ -13,22 +13,22 @@ import { Link } from '@nextui-org/link'
 import { link as linkStyles } from '@nextui-org/theme'
 import NextLink from 'next/link'
 import clsx from 'clsx'
+import { useState } from 'react'
 
 import { siteConfig } from '@/config/site'
 import { ThemeSwitch } from '@/components/theme-switch'
-import { GithubIcon, Logo } from '@/components/icons'
-import { useState } from 'react'
+import { GithubIcon, SwordIcon } from '@/components/icons'
 
 export const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     return (
-        <NextUINavbar maxWidth="xl" position="sticky" isMenuOpen={isMenuOpen}>
+        <NextUINavbar isMenuOpen={isMenuOpen} maxWidth="xl" position="sticky">
             <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
                 <NavbarBrand as="li" className="gap-3 max-w-fit">
                     <NextLink className="flex justify-start items-center gap-1" href="/">
-                        <Logo />
-                        <p className="font-bold text-inherit">ACME</p>
+                        <SwordIcon />
+                        <p className="font-bold text-inherit">VirgilAI</p>
                     </NextLink>
                 </NavbarBrand>
 

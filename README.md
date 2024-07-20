@@ -1,3 +1,3 @@
-# Not That AI: 并非AI
+# Virgil AI: Powerful AI
 
-AI，并非AI，这是一款实用的AI工具
+这是一款富有力量感的AI工具
