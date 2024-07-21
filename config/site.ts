@@ -1,6 +1,6 @@
 export const siteConfig = {
-    name: 'Next.js + NextUI',
-    description: 'Make beautiful websites regardless of your design experience.',
+    name: 'Virgil AI: Powerful AI',
+    description: '一款富有力量感的AI工具',
     navItems: [
         {
             label: '聊天',
@@ -17,10 +17,6 @@ export const siteConfig = {
     ],
     links: {
         github: 'https://github.com/FriendshipMagic/not-that-ai',
-        virgilAI: 'https://www.bilibili.com/video/BV1it4y1q7a9/?spm_id_from=333.788.recommend_more_video.-1', // TODO: 需要删除
-        twitter: 'https://twitter.com/getnextui',
-        docs: 'https://nextui.org',
-        discord: 'https://discord.gg/9b6yyZKmH4',
-        sponsor: 'https://patreon.com/jrgarciadev',
+        virgilAI: 'https://www.bilibili.com/video/BV1it4y1q7a9/?spm_id_from=333.788.recommend_more_video.-1',
     },
 }
