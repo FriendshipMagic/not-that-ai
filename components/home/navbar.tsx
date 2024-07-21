@@ -33,7 +33,7 @@ export const Navbar = () => {
                     </NextLink>
                 </NavbarBrand>
 
-                <ul className="hidden md:flex gap-4 justify-start ml-2 mb-[2px]">
+                <ul className="hidden md:flex gap-4 justify-start ml-2">
                     {siteConfig.navItems.map((item) => (
                         <NavbarItem key={item.label}>
                             <NextLink
