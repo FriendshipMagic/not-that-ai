@@ -3,10 +3,6 @@ export const siteConfig = {
     description: 'Make beautiful websites regardless of your design experience.',
     navItems: [
         {
-            label: '首页',
-            href: '/',
-        },
-        {
             label: '聊天',
             href: '/chat',
         },
@@ -21,9 +17,7 @@ export const siteConfig = {
     ],
     links: {
         github: 'https://github.com/FriendshipMagic/not-that-ai',
-        virgilAI:
-            'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV178411f7r8%2F&psig=AOvVaw17P-qLGk6XRlAHuoRUleFf&ust=1721571898168000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCPDRhqLptYcDFQAAAAAdAAAAABAE', // TODO: 未来替换
-        // TODO: 需要删除
+        virgilAI: 'https://www.bilibili.com/video/BV1it4y1q7a9/?spm_id_from=333.788.recommend_more_video.-1', // TODO: 需要删除
         twitter: 'https://twitter.com/getnextui',
         docs: 'https://nextui.org',
         discord: 'https://discord.gg/9b6yyZKmH4',
