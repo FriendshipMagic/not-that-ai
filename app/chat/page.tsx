@@ -1,9 +1,7 @@
-import { title } from '@/components/primitives'
-
 export default function ChatPage() {
     return (
-        <div>
-            <h1 className={title()}>Chat</h1>
+        <div className="max-h-full flex flex-row items-start py-0">
+            <div className="flex-1">ChatPage</div>
         </div>
     )
 }
