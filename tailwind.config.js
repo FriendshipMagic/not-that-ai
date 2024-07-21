@@ -8,7 +8,11 @@ module.exports = {
         './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
     ],
     theme: {
-        extend: {},
+        extend: {
+            height: {
+                'main-area': 'calc(100vh - 4rem)',
+            },
+        },
     },
     darkMode: 'class',
     plugins: [nextui(), 'prettier-plugin-tailwindcss'],

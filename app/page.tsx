@@ -7,8 +7,8 @@ import { siteConfig } from '@/config/site'
 
 export default function HomePage() {
     return (
-        <section className="w-full h-full flex-1 flex flex-col items-center justify-center">
-            <div className="w-full h-full flex-1 flex flex-col items-center justify-center">
+        <>
+            <div className="w-full h-full grow flex flex-col items-center justify-center">
                 <div className="inline-block max-w-lg text-center justify-center">
                     <span className={title({ color: 'blue' })}>Virgil</span>
                     <span className={title({ color: 'violet' })}>&nbsp;AI</span>
@@ -45,6 +45,6 @@ export default function HomePage() {
                     <span className={title({ size: 'rem', color: 'violet' })}>&nbsp;AI</span>
                 </Link>
             </div>
-        </section>
+        </>
     )
 }
