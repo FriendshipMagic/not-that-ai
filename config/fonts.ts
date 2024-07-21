@@ -1,13 +1,9 @@
-import { Fira_Code as FontMono, Inter as FontSans } from 'next/font/google'
-
-export const fontSans = FontSans({
-    subsets: ['latin'],
+export const fontSans = {
+    fontFamily: 'Inter',
     variable: '--font-sans',
-    display: 'swap',
-})
+}
 
-export const fontMono = FontMono({
-    subsets: ['latin'],
+export const fontMono = {
+    fontFamily: 'Source Code Pro',
     variable: '--font-mono',
-    display: 'swap',
-})
+}
