@@ -171,13 +171,13 @@ function MobileForm({
                         <ModalHeader className="flex text-center flex-col gap-1">反馈</ModalHeader>
                         <FormBody />
                         <ModalFooter className="flex justify-center">
-                            <Button color="danger" variant="flat" onPress={onClose}>
+                            <Button color="danger" variant="flat" onClick={onClose}>
                                 取消
                             </Button>
                             <Button
                                 color="primary"
                                 isDisabled={!isValid}
-                                onPress={() => {
+                                onClick={() => {
                                     onClose()
                                     onMessageOpen()
                                     // TODO: 发送表单
@@ -207,7 +207,7 @@ function Message({ isOpen, onOpenChange }: { isOpen: boolean; onOpenChange: () =
                             <Button className="hidden md:flex" color="danger" variant="flat" onClick={onClose}>
                                 关闭
                             </Button>
-                            <Button className="md:hidden" color="danger" variant="flat" onPress={onClose}>
+                            <Button className="md:hidden" color="danger" variant="flat" onClick={onClose}>
                                 关闭
                             </Button>
                         </ModalFooter>
@@ -253,7 +253,7 @@ export function MobileFeedback() {
             <MobileForm isOpen={isFormOpen} onMessageOpen={onMessageOpen} onOpenChange={onFormOpenChange} />
             <Message isOpen={isMessageOpen} onOpenChange={onMessageOpenChange} />
             <NavbarMenuItem key={label}>
-                <Link color={'foreground'} href="" size="lg" onPress={onFormOpen}>
+                <Link color={'foreground'} href="" size="lg" onClick={onFormOpen}>
                     {label}
                 </Link>
             </NavbarMenuItem>
