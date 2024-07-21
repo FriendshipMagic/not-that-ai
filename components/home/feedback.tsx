@@ -10,17 +10,70 @@ import { Button } from '@nextui-org/button'
 import { MailIcon } from '@nextui-org/shared-icons'
 import { Link } from '@nextui-org/link'
 import { Select, SelectItem } from '@nextui-org/select'
-import { useState } from 'react'
+import { create } from 'zustand'
+import { produce } from 'immer'
 
 import { siteConfig } from '@/config/site'
 import { validateEmail } from '@/utils/rules'
+import { FeedbackState } from '@/types/stores'
+
+const label = '反馈'
+
+const useFeedbackStore = create<FeedbackState>((set) => ({
+    feedback: {
+        application: '',
+        problem: '',
+        email: '',
+    },
+    isValid: false,
+    setApplication: (application: string) =>
+        set(
+            produce((state) => {
+                state.feedback.application = application
+            }),
+        ),
+    setProblem: (problem: string) =>
+        set(
+            produce((state) => {
+                state.feedback.problem = problem
+            }),
+        ),
+    setEmail: (email: string) =>
+        set(
+            produce((state) => {
+                state.feedback.email = email
+            }),
+        ),
+    setIsValid: () =>
+        set((state) => {
+            const { application, problem, email } = state.feedback
+
+            return {
+                isValid: application.length > 0 && problem.length > 0 && validateEmail(email),
+            }
+        }),
+}))
 
 function FormBody() {
-    const [email, setEmail] = useState('')
+    const { application, problem, email } = useFeedbackStore((state) => state.feedback)
+    const setApplication = useFeedbackStore((state) => state.setApplication)
+    const setProblem = useFeedbackStore((state) => state.setProblem)
+    const setEmail = useFeedbackStore((state) => state.setEmail)
+    const setIsValid = useFeedbackStore((state) => state.setIsValid)
 
     return (
         <ModalBody>
-            <Select isRequired label="Application" placeholder="请选择出现问题的应用" variant="bordered">
+            <Select
+                isRequired
+                label="Application"
+                placeholder="请选择出现问题的应用"
+                value={application}
+                variant="faded"
+                onSelectionChange={({ currentKey }) => {
+                    setApplication(currentKey || '')
+                    setIsValid()
+                }}
+            >
                 {siteConfig.subApps.map((app) => (
                     <SelectItem key={app.value}>{app.label}</SelectItem>
                 ))}
@@ -32,19 +85,27 @@ function FormBody() {
                 maxRows={8}
                 minRows={8}
                 placeholder="简要描述您遇到的问题"
-                variant="bordered"
+                value={problem}
+                variant="faded"
+                onValueChange={(value) => {
+                    setProblem(value)
+                    setIsValid()
+                }}
             />
             <Input
                 isRequired
                 endContent={<MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />}
                 errorMessage="请输入有效的邮箱"
-                isInvalid={!validateEmail(email)}
+                isInvalid={email !== '' && !validateEmail(email)}
                 label="Email"
                 placeholder="请输入您的邮箱"
                 type="email"
                 value={email}
-                variant="bordered"
-                onValueChange={setEmail}
+                variant="faded"
+                onValueChange={(value) => {
+                    setEmail(value)
+                    setIsValid()
+                }}
             />
         </ModalBody>
     )
@@ -59,6 +120,8 @@ function PCForm({
     onOpenChange: () => void
     onMessageOpen: () => void
 }) {
+    const isValid = useFeedbackStore((state) => state.isValid)
+
     return (
         <Modal isOpen={isOpen} placement="center" onOpenChange={onOpenChange}>
             <ModalContent>
@@ -72,9 +135,11 @@ function PCForm({
                             </Button>
                             <Button
                                 color="primary"
+                                isDisabled={!isValid}
                                 onClick={() => {
                                     onClose()
                                     onMessageOpen()
+                                    // TODO: 发送表单
                                 }}
                             >
                                 确定
@@ -96,6 +161,8 @@ function MobileForm({
     onOpenChange: () => void
     onMessageOpen: () => void
 }) {
+    const isValid = useFeedbackStore((state) => state.isValid)
+
     return (
         <Modal hideCloseButton isOpen={isOpen} placement="center" onOpenChange={onOpenChange}>
             <ModalContent>
@@ -109,9 +176,11 @@ function MobileForm({
                             </Button>
                             <Button
                                 color="primary"
+                                isDisabled={!isValid}
                                 onPress={() => {
                                     onClose()
                                     onMessageOpen()
+                                    // TODO: 发送表单
                                 }}
                             >
                                 确定
@@ -150,7 +219,6 @@ function Message({ isOpen, onOpenChange }: { isOpen: boolean; onOpenChange: () =
 }
 
 export function PCFeedback() {
-    const label = '反馈'
     const { isOpen: isFormOpen, onOpen: onFormOpen, onOpenChange: onFormOpenChange } = useDisclosure()
     const { isOpen: isMessageOpen, onOpen: onMessageOpen, onOpenChange: onMessageOpenChange } = useDisclosure()
 
@@ -177,7 +245,6 @@ export function PCFeedback() {
 }
 
 export function MobileFeedback() {
-    const label = '反馈'
     const { isOpen: isFormOpen, onOpen: onFormOpen, onOpenChange: onFormOpenChange } = useDisclosure()
     const { isOpen: isMessageOpen, onOpen: onMessageOpen, onOpenChange: onMessageOpenChange } = useDisclosure()
 
