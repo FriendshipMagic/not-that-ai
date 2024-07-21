@@ -18,6 +18,7 @@ import { useState } from 'react'
 import { siteConfig } from '@/config/site'
 import { ThemeSwitch } from '@/components/theme-switch'
 import { GithubIcon, SwordIcon } from '@/components/icons'
+import { MobileFeedback, PCFeedback } from '@/components/home/feedback'
 
 export const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -47,6 +48,7 @@ export const Navbar = () => {
                             </NextLink>
                         </NavbarItem>
                     ))}
+                    <PCFeedback />
                 </ul>
             </NavbarContent>
 
@@ -72,6 +74,7 @@ export const Navbar = () => {
                             </Link>
                         </NavbarMenuItem>
                     ))}
+                    <MobileFeedback />
                 </div>
             </NavbarMenu>
         </NextUINavbar>

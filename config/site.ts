@@ -10,13 +10,31 @@ export const siteConfig = {
             label: '应用',
             href: '/applications',
         },
-        {
-            label: '反馈',
-            href: '/feedback',
-        },
     ],
     links: {
         github: 'https://github.com/FriendshipMagic/not-that-ai',
         virgilAI: 'https://www.bilibili.com/video/BV1it4y1q7a9/?spm_id_from=333.788.recommend_more_video.-1',
     },
+    subApps: [
+        {
+            label: 'Virgil Chat',
+            value: 'Virgil Chat',
+        },
+        {
+            label: '唱歌',
+            value: '唱歌',
+        },
+        {
+            label: '跳舞',
+            value: '跳舞',
+        },
+        {
+            label: 'rap',
+            value: 'rap',
+        },
+        {
+            label: '篮球',
+            value: '篮球',
+        },
+    ],
 }
