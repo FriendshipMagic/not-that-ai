@@ -61,7 +61,7 @@ export const Navbar = () => {
                 </NavbarItem>
                 <NavbarMenuToggle
                     className="md:hidden basis-1 justify-end"
-                    onPress={() => setIsMenuOpen(!isMenuOpen)}
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
                 />
             </NavbarContent>
 
@@ -69,7 +69,7 @@ export const Navbar = () => {
                 <div className="md:hidden mx-4 mt-2 flex flex-col gap-2">
                     {siteConfig.navItems.map((item) => (
                         <NavbarMenuItem key={item.label}>
-                            <Link color={'foreground'} href={item.href} size="lg" onPress={() => setIsMenuOpen(false)}>
+                            <Link color={'foreground'} href={item.href} size="lg" onClick={() => setIsMenuOpen(false)}>
                                 {item.label}
                             </Link>
                         </NavbarMenuItem>
