@@ -10,7 +10,8 @@ module.exports = {
     theme: {
         extend: {
             height: {
-                'main-area': 'calc(100vh - 4rem)',
+                'main-area': 'calc(100vh - 64px)', // 主要区域高度
+                'chat-list': 'calc(100vh - 156px)', // 聊天板块-聊天列表高度
             },
         },
     },
