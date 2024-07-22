@@ -55,7 +55,7 @@ export const Navbar = () => {
             <NavbarContent className="flex basis-1/5 sm:basis-full" justify="end">
                 <NavbarItem className="flex gap-2">
                     <Link isExternal aria-label="Github" href={siteConfig.links.github}>
-                        <GithubIcon className="text-default-500" />
+                        <GithubIcon className="text-icon" />
                     </Link>
                     <ThemeSwitch />
                 </NavbarItem>
