@@ -1,9 +1,7 @@
-export type FeedbackState = {
-    feedback: {
-        application: string
-        problem: string
-        email: string
-    }
+import { Feedback } from '@/types/index'
+
+export type FeedbackStore = {
+    feedback: Feedback
     isValid: boolean
     setApplication: (application: string) => void
     setProblem: (problem: string) => void

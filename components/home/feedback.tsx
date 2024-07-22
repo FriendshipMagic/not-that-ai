@@ -15,11 +15,11 @@ import { produce } from 'immer'
 
 import { siteConfig } from '@/config/site'
 import { validateEmail } from '@/utils/rules'
-import { FeedbackState } from '@/types/stores'
+import { FeedbackStore } from '@/types/stores'
 
 const label = '反馈'
 
-const useFeedbackStore = create<FeedbackState>((set) => ({
+const useFeedbackStore = create<FeedbackStore>((set) => ({
     feedback: {
         application: '',
         problem: '',
