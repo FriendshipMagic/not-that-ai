@@ -10,10 +10,11 @@ export default function HomePage() {
         <section className="w-full h-full flex-1 flex flex-col items-center justify-center">
             <div className="w-full h-full flex-1 flex flex-col items-center justify-center">
                 <div className="inline-block max-w-lg text-center justify-center">
-                    <h1 className={title({ color: 'violet' })}>Virgil AI</h1>
+                    <span className={title({ color: 'blue' })}>Virgil</span>
+                    <span className={title({ color: 'violet' })}>&nbsp;AI</span>
                     <h2 className={subtitle({ class: 'mt-4' })}>
                         AI with
-                        <span className="text-blue-500"> Power</span>
+                        <span className="text-blue-500">&nbsp;Power</span>
                         ：如果你想用，那就自己来学！
                     </h2>
                 </div>
@@ -35,12 +36,13 @@ export default function HomePage() {
             <div className="w-full h-6 flex items-center justify-center my-3">
                 <Link
                     isExternal
-                    className="flex items-center gap-1 text-current"
+                    className="flex items-center text-current"
                     href={siteConfig.links.virgilAI}
                     title="nextui.org homepage"
                 >
                     <span className="text-default-600">Powered by</span>
-                    <p className="text-primary">VirgilAI</p>
+                    <span className={title({ size: 'rem', color: 'blue' })}>&nbsp;Virgil</span>
+                    <span className={title({ size: 'rem', color: 'violet' })}>&nbsp;AI</span>
                 </Link>
             </div>
         </section>
