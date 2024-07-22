@@ -16,5 +16,17 @@ module.exports = {
         },
     },
     darkMode: 'class',
-    plugins: [nextui(), 'prettier-plugin-tailwindcss'],
+    plugins: [
+        nextui(),
+        'prettier-plugin-tailwindcss',
+        ({ addUtilities }) => {
+            const newUtilities = {
+                // 图标标准双色
+                '.text-icon': {
+                    '@apply text-black dark:text-white': {},
+                },
+            }
+            addUtilities(newUtilities)
+        },
+    ],
 }

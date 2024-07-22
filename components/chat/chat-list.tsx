@@ -42,9 +42,9 @@ export default function ChatList() {
                         <ListboxItem key={i} className="py-3" color="warning" textValue={i.toString()}>
                             <div className="flex flex-row items-center space-x-3">
                                 {love ? (
-                                    <HeartFilled className="text-lg dark:text-white" onClick={() => setLove(!love)} />
+                                    <HeartFilled className="text-lg text-icon" onClick={() => setLove(!love)} />
                                 ) : (
-                                    <HeartOutlined className="text-lg dark:text-white" onClick={() => setLove(!love)} />
+                                    <HeartOutlined className="text-lg text-icon" onClick={() => setLove(!love)} />
                                 )}
                                 <Link color="foreground" href={'/chat'} size="lg" onClick={() => console.log(i)}>
                                     {i}
