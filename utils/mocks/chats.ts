@@ -1,8 +1,8 @@
-import { Chat } from '@/utils/hooks/useChatListStore'
+import { ChatListState } from '@/utils/hooks/useChatListStore'
 
 const titles = [
     '初识之缘',
-    '美好的回忆',
+    '美好回忆',
     '浪漫约会',
     '心心相印',
     '甜蜜时光',
@@ -13,15 +13,16 @@ const titles = [
     '感人瞬间',
 ]
 
-export const mockChats: Chat[] = new Array(10).fill(0).map((_, i) => ({
+export const mockChats: ChatListState[] = new Array(10).fill(0).map((_, i) => ({
     previousIndex: i,
     index: i,
     title: titles[i],
     isLove: false,
+    removeState: 'hidden',
 }))
 
 mockChats.forEach((chat, i) => {
-    if (i < 5) {
+    if (i < 4) {
         chat.isLove = true
     }
 })

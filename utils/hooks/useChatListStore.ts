@@ -4,13 +4,14 @@ import { produce } from 'immer'
 import { mockChats } from '@/utils/mocks/chats'
 import { ChatListEnum } from '@/config/constants'
 
+type RemoveState = 'hidden' | 'show' | 'confirm'
+
 export type ChatListState = {
     previousIndex: number
     index: number
     title: string
     isLove: boolean
-    showRemove: boolean
-    removeConfirm: boolean
+    removeState: RemoveState
 }
 
 export type ChatListStore = {
@@ -18,6 +19,7 @@ export type ChatListStore = {
     addChat: (title: string) => void
     removeChat: (index: number) => void
     switchLove: (index: number) => void
+    setRemoveState: (index: number, removeState: RemoveState) => void
 }
 
 export const useChatListStore = create<ChatListStore>((set) => ({
@@ -36,8 +38,7 @@ export const useChatListStore = create<ChatListStore>((set) => ({
                     index: length,
                     title,
                     isLove: false,
-                    showRemove: false,
-                    removeConfirm: false,
+                    removeState: 'hidden',
                 })
             }),
         ),
@@ -49,23 +50,33 @@ export const useChatListStore = create<ChatListStore>((set) => ({
 
             const currentChats = state.chats.filter((_, i) => i !== index)
 
-            currentChats.forEach((chat, i) => {
-                chat.index = i
-            })
-
-            return { chats: currentChats }
+            return {
+                chats: currentChats.map((chat, index) => ({
+                    ...chat,
+                    index,
+                })),
+            }
         }),
     switchLove: (index: number) =>
         set((state: ChatListStore) => {
-            const currentChat = state.chats[index]
+            const currentChat = { ...state.chats[index] }
             const currentChats = state.chats.filter((_, i) => i !== index)
 
             currentChat.isLove = !currentChat.isLove
+            currentChat.removeState = 'hidden' // 防止chat被置顶或沉底仍然显示右边的删除键
             currentChat.isLove ? currentChats.unshift(currentChat) : currentChats.push(currentChat)
-            currentChats.forEach((chat, i) => {
-                chat.index = i
-            })
 
-            return { chats: currentChats }
+            return {
+                chats: currentChats.map((chat, index) => ({
+                    ...chat,
+                    index,
+                })),
+            }
         }),
+    setRemoveState: (index: number, removeState: RemoveState) =>
+        set(
+            produce((state: ChatListStore) => {
+                state.chats[index].removeState = removeState
+            }),
+        ),
 }))
