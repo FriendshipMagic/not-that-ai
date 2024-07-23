@@ -1,14 +1,17 @@
 'use client'
 
 import { Listbox, ListboxItem } from '@nextui-org/listbox'
-import { useState } from 'react'
 import { Link } from '@nextui-org/link'
 import { ScrollShadow } from '@nextui-org/scroll-shadow'
 import { Input } from '@nextui-org/input'
 import { PlusFilledIcon, SearchIcon } from '@nextui-org/shared-icons'
 import { HeartFilled, HeartOutlined } from '@ant-design/icons'
 
+import { useChatListStore } from '@/utils/hooks/useChatListStore'
+
 function TopBar() {
+    const addChat = useChatListStore((state) => state.addChat)
+
     return (
         <div className="flex flex-row items-center justify-between pb-2 space-x-2">
             <Input
@@ -19,35 +22,36 @@ function TopBar() {
             />
             <Link className="justify-center" color="foreground" href={'/chat'} size="lg">
                 {/*TODO: 给按钮加一圈灯条，显示对话占用量*/}
-                <PlusFilledIcon className="w-9 h-9" />
+                <PlusFilledIcon className="w-9 h-9" onClick={() => addChat('新的对话')} />
             </Link>
         </div>
     )
 }
 
 export default function ChatList() {
-    const [love, setLove] = useState(false)
+    const chats = useChatListStore((state) => state.chats)
+    const loveChat = useChatListStore((state) => state.switchLove)
 
     return (
         <div className="flex flex-col">
             <TopBar />
             <ScrollShadow className="h-full">
                 <Listbox
+                    shouldHighlightOnFocus
                     aria-label="Actions"
                     className="h-chat-list overflow-scroll"
                     defaultSelectedKeys="0"
-                    onAction={(key) => console.log(key)}
                 >
-                    {new Array(20).fill(0).map((_, i) => (
-                        <ListboxItem key={i} className="py-3" color="warning" textValue={i.toString()}>
+                    {chats.map((chat) => (
+                        <ListboxItem key={chat.index} className="py-3" color="warning" textValue={chat.title}>
                             <div className="flex flex-row items-center space-x-3">
-                                {love ? (
-                                    <HeartFilled className="text-lg text-icon" onClick={() => setLove(!love)} />
+                                {chat.isLove ? (
+                                    <HeartFilled className="text-lg text-icon" onClick={() => loveChat(chat.index)} />
                                 ) : (
-                                    <HeartOutlined className="text-lg text-icon" onClick={() => setLove(!love)} />
+                                    <HeartOutlined className="text-lg text-icon" onClick={() => loveChat(chat.index)} />
                                 )}
-                                <Link color="foreground" href={'/chat'} size="lg" onClick={() => console.log(i)}>
-                                    {i}
+                                <Link color="foreground" href={'/chat'} size="lg">
+                                    {chat.title}
                                 </Link>
                             </div>
                         </ListboxItem>
