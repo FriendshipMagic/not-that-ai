@@ -11,6 +11,7 @@ import clsx from 'clsx'
 
 import { useChatListStore } from '@/utils/hooks/useChatListStore'
 import { ChatListEnum } from '@/config/constants'
+import EditableText from '@/components/utils/editable-text'
 
 function TopBar() {
     const chatLength = useChatListStore((state) => state.chats).length
@@ -94,7 +95,8 @@ export default function ChatList() {
                                 }}
                             >
                                 <Link color="foreground" href={`/chat/${chat.index}`} size="lg">
-                                    {chat.title}
+                                    {/*{chat.title}*/}
+                                    <EditableText index={chat.index} />
                                 </Link>
                             </ListboxItem>
                         )

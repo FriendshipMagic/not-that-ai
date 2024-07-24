@@ -19,6 +19,8 @@ export const mockChats: ChatListState[] = new Array(10).fill(0).map((_, i) => ({
     title: titles[i],
     isLove: false,
     removeState: 'hidden',
+    isEditable: false,
+    currentTitle: titles[i],
 }))
 
 mockChats.forEach((chat, i) => {

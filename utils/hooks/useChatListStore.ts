@@ -12,6 +12,8 @@ export type ChatListState = {
     title: string
     isLove: boolean
     removeState: RemoveState
+    isEditable: boolean
+    currentTitle: string
 }
 
 export type ChatListStore = {
@@ -20,6 +22,9 @@ export type ChatListStore = {
     removeChat: (index: number) => void
     switchLove: (index: number) => void
     setRemoveState: (index: number, removeState: RemoveState) => void
+    setIsEditable: (index: number, isEditable: boolean) => void
+    setTitle: (index: number) => void
+    setCurrentTitle: (index: number, currentTitle: string) => void
 }
 
 export const useChatListStore = create<ChatListStore>((set) => ({
@@ -39,6 +44,8 @@ export const useChatListStore = create<ChatListStore>((set) => ({
                     title,
                     isLove: false,
                     removeState: 'hidden',
+                    isEditable: false,
+                    currentTitle: '',
                 })
             }),
         ),
@@ -79,4 +86,30 @@ export const useChatListStore = create<ChatListStore>((set) => ({
                 state.chats[index].removeState = removeState
             }),
         ),
+    setIsEditable: (index: number, isEditable: boolean) =>
+        set(
+            produce((state: ChatListStore) => {
+                state.chats[index].isEditable = isEditable
+            }),
+        ),
+    setTitle: (index: number) => {
+        set(
+            produce((state: ChatListStore) => {
+                const editText = state.chats[index].currentTitle
+
+                if (editText.length === 0) {
+                    return
+                }
+                state.setIsEditable(index, false)
+                state.chats[index].title = editText
+            }),
+        )
+    },
+    setCurrentTitle: (index: number, currentTitle: string) => {
+        set(
+            produce((state: ChatListStore) => {
+                state.chats[index].currentTitle = currentTitle
+            }),
+        )
+    },
 }))
