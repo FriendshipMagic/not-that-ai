@@ -25,7 +25,7 @@ export default function HomePage() {
                             radius: 'full',
                             variant: 'shadow',
                         })}
-                        href={'/chat'}
+                        href={'/chat/0'} // TODO: 暂时先写0
                     >
                         {/*encode \'*/}
                         Let&apos;s Chat!

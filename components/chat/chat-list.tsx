@@ -6,6 +6,8 @@ import { ScrollShadow } from '@nextui-org/scroll-shadow'
 import { Input } from '@nextui-org/input'
 import { PlusFilledIcon, SearchIcon } from '@nextui-org/shared-icons'
 import { DeleteFilled, DeleteOutlined, HeartFilled, HeartOutlined } from '@ant-design/icons'
+import { usePathname } from 'next/navigation'
+import clsx from 'clsx'
 
 import { useChatListStore } from '@/utils/hooks/useChatListStore'
 import { ChatListEnum } from '@/config/constants'
@@ -35,6 +37,7 @@ function TopBar() {
 }
 
 export default function ChatList() {
+    const pathname = usePathname()
     const chats = useChatListStore((state) => state.chats)
     const removeChat = useChatListStore((state) => state.removeChat)
     const switchLove = useChatListStore((state) => state.switchLove)
@@ -45,18 +48,12 @@ export default function ChatList() {
             <TopBar />
             {/*TODO: 失效bug*/}
             <ScrollShadow className="h-chat-list">
-                <Listbox
-                    aria-label="Actions"
-                    className="h-full overflow-scroll"
-                    defaultSelectedKeys="0"
-                    shouldFocusOnHover={false}
-                >
+                <Listbox aria-label="Actions" className="h-full overflow-scroll" color="warning" variant="light">
                     {chats.map((chat) => {
                         return (
                             <ListboxItem
                                 key={chat.index}
-                                className="py-3"
-                                color="warning"
+                                className={clsx('py-3', pathname === `/chat/${chat.index}` && 'bg-amber-500')}
                                 endContent={
                                     chat.removeState === 'hidden' ? null : chat.removeState === 'show' ? (
                                         <DeleteOutlined
@@ -85,6 +82,7 @@ export default function ChatList() {
                                     )
                                 }
                                 textValue={chat.title}
+                                variant={pathname !== `/chat/${chat.index}` ? 'light' : 'solid'}
                                 onMouseEnter={() => {
                                     if (chat.removeState === 'confirm') {
                                         return
@@ -95,7 +93,7 @@ export default function ChatList() {
                                     setShowRemove(chat.index, 'hidden')
                                 }}
                             >
-                                <Link color="foreground" href={'/chat'} size="lg">
+                                <Link color="foreground" href={`/chat/${chat.index}`} size="lg">
                                     {chat.title}
                                 </Link>
                             </ListboxItem>

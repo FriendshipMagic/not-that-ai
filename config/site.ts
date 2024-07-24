@@ -4,7 +4,7 @@ export const siteConfig = {
     navItems: [
         {
             label: '聊天',
-            href: '/chat',
+            href: '/chat/0', // TODO: 暂时先写0
         },
         {
             label: '应用',
