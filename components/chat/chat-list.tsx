@@ -26,7 +26,7 @@ function TopBar() {
                     variant="faded"
                 />
                 <div className="flex flex-col items-center">
-                    <Link className="justify-center" color="foreground" href={'/chat'} size="lg">
+                    <Link className="justify-center" color="foreground" href={`/chat/${chatLength}`} size="lg">
                         <PlusFilledIcon className="w-9 h-9" onClick={() => addChat('新的对话')} />
                     </Link>
                     <div className="w-10 text-xs text-center">{`${chatLength} / ${ChatListEnum.MAX_CHAT_LENGTH}`}</div>
